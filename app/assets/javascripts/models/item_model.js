@@ -1,6 +1,6 @@
 Typus.Serialize.Models.Item = Backbone.Model.extend({
   
-  initialize: function(attributes){
+  initialize: function(){
     var self = this;
     var keys = this.collection.keys;
 
@@ -8,7 +8,7 @@ Typus.Serialize.Models.Item = Backbone.Model.extend({
     // but don't overwrite them if they already exist
     _.each(keys, function(key){
       if (!self.get(key)) {
-        self.setByName(key, "");
+        self.setByName(key, null);
       }
     });
   },
@@ -17,10 +17,10 @@ Typus.Serialize.Models.Item = Backbone.Model.extend({
     return this.collection.baseName + '[' + this.cid + ']';
   },
   
-  setByName: function(key, value, options) { 
+  setByName: function(key, value) { 
     var setter = {}; 
     setter[key] = value; 
-    this.set(setter, options); 
+    this.set(setter); 
   }
 
 });

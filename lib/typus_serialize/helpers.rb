@@ -2,7 +2,12 @@ module TypusSerialize
   module ApplicationHelper
     
     def get_keys(model, attribute)
-      Typus::Configuration.config[model.class.to_s]['fields']['options']['serialize']['keys'][attribute.to_s]
+      config = begin
+          c = Typus::Configuration.config[model.class.to_s]['fields']['options']['serialize'][attribute.to_s]
+          c.split(',').collect {|t| t.strip.humanize }.to_json
+        rescue '[]'
+        end
+      raw config
     end
     
     def get_name(model, attribute)

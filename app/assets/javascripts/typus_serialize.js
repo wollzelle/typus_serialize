@@ -14,16 +14,13 @@ window.Typus = Typus || {};
 Typus.Serialize = {
   Models: {},
   Collections: {},
-  Views: {}  
+  Views: {}
 };
 
 Typus.Serializer = function(options, element){
-  this.options = options;
-  this.element = element;
-  this.data = options.data;
-  this.collection = new Typus.Serialize.Collections.Set(null, options);
-  this.collection.reset(this.data);
-  this.view = new Typus.Serialize.Views.Set({ el: this.element, collection: this.collection });
+  var collection = new Typus.Serialize.Collections.List(null, options);
+  new Typus.Serialize.Views.List({ el: element, collection: collection });
+  collection.reset(options.data);
 };
 
 $.widget.bridge("typusSerialize", Typus.Serializer);

@@ -1,4 +1,4 @@
-Typus.Serialize.Views.Set = Backbone.View.extend({
+Typus.Serialize.Views.List = Backbone.View.extend({
 
   events: {
     'click .serial-add-button': 'addItem'
