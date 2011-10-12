@@ -1,0 +1,68 @@
+
+
+.serial-item {
+  background: #fafafa;
+/*  background: #eee;  */
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #fff;  
+  padding: 10px 20px;
+  margin: 0;
+  position: relative;
+}
+
+/*.serial-add-button {
+  color: #999;
+  font-size: 20px;
+  text-decoration: none !important;
+  font-weight    : bold;
+  display        : block;
+}*/
+
+/*.serial-add-button {
+  background: #eee;   
+  text-align: center;
+  line-height: 100px;    
+  color: #999;
+  font-size: 20px;
+  line-height    : 100px;
+  text-decoration: none !important;
+  font-weight    : bold;
+  display        : block;
+  width: 170px;
+  height: 100px;
+}*/
+
+.serial-remove-button {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  text-decoration: none;
+}
+
+.serial-drag-handle {
+  position: absolute;
+  top: 10px;
+  right: 40px;
+  text-decoration: none;
+  cursor: move;
+  -webkit-transform: rotate(90deg);
+}
+
+.serial-item p {
+/*  padding: 5px 0;*/
+}
+
+.serial-item label {
+  float: left;
+  min-width: 80px;
+  padding-top: 5px;
+}
+
+.serial-item input {
+  width: 60%;
+}
+
+.serial-item.ui-sortable-placeholder {
+  background: none !important;
+  border-style: dashed !important;
+}

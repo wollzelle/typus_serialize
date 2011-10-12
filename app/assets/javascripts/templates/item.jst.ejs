@@ -1,0 +1,11 @@
+<li class="serial-item">
+  <a href="#" class="serial-button serial-remove-button" title="Remove">&#215;</a>
+  <span class="serial-button serial-drag-handle" title="Remove">&harr;</span>
+
+  <% _.each(model.attributes, function(value, key) { %>  
+    <p>
+      <label><%= key %></label>
+      <input type="text" name="<%= model.baseName() %>[<%= key %>]" value="<%= value %>">      
+    </p>
+  <% }); %>
+</li>

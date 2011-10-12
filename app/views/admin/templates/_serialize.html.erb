@@ -1,0 +1,44 @@
+<%
+  # helpers
+  @keys = get_keys(@item, attribute)
+  @name = get_name(@item, attribute)  
+  @data = get_json(@item, attribute)
+%>
+
+<% unless @typus_serialize_assets_loaded # only load assets once %>
+
+  <% content_for :stylesheets do %>
+  <%= stylesheet_link_tag "typus_serialize" %>
+  <% end %>
+
+  <% content_for :javascripts do %>
+  <%= javascript_include_tag "typus_serialize" %>
+  <% end %>
+
+  <% @typus_serialize_assets_loaded = true %>
+
+<% end %>
+  
+<% content_for :javascripts do %>
+<script>
+  $(document).ready(function(){
+    $('#<%= attribute_id %>').typusSerialize({
+      data: <%= @data %>,
+      baseName: '<%= @name %>',
+      keys: '<%= @keys %>'
+    });
+  });
+</script>
+<% end %>
+
+<li id="<%= attribute_id %>">
+
+  <%= form.label attribute, label_text %>
+
+  <ul class="serial-list">
+    <li class="serial-item serial-item-add">
+      <a href="#" class="serial-button serial-add-button" title="Add <%= attribute %>">Add <%= attribute %> +</a>
+    </li>
+  </ul>
+
+</li>
