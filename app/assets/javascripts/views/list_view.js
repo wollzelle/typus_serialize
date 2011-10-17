@@ -4,13 +4,15 @@ Typus.Serialize.Views.List = Backbone.View.extend({
     'click .serial-add-button': 'addItem'
   },
 
-  initialize: function(options){    
+  initialize: function(options) {
     this.collection = options.collection;
     this.list = this.$('.serial-list');
     this.addButton = this.$('.serial-item-add');
     this.collection.bind('add',   _.bind(this.onAdd, this));
     this.collection.bind('remove',_.bind(this.onRemove, this));    
     this.collection.bind('reset', _.bind(this.onReset, this));    
+    // this.collection.bind('limit:min', _.bind(this.onMinimum, this));
+    // this.collection.bind('limit:max', _.bind(this.onMaximum, this));
     this.makeSortable();
     this.onReset();
   },
@@ -29,6 +31,14 @@ Typus.Serialize.Views.List = Backbone.View.extend({
       var template = JST['templates/empty'];
       $(this.list).append(template({ base_name: this.collection.baseName }));
     }
+  },
+
+  onMinimum: function(){
+    // console.log('min');
+  },
+
+  onMaximum: function(){
+    // console.log('max');
   },
 
   addItem: function(e){

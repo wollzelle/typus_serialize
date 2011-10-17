@@ -1,8 +1,9 @@
 <%
   # helpers
-  @keys = get_keys(@item, attribute)
-  @name = get_name(@item, attribute)  
-  @data = get_json(@item, attribute)
+  @keys  = get_keys(@item, attribute)
+  @name  = get_name(@item, attribute)
+  @data  = get_json(@item, attribute)
+  @limit = get_limit(@item, attribute)
 %>
 
 <% unless @typus_serialize_assets_loaded # only load assets once %>
@@ -25,7 +26,8 @@
     $('#<%= attribute_id %>').typusSerialize({
       data: <%= @data %>,
       baseName: '<%= @name %>',
-      keys: <%= @keys %>
+      keys: <%= @keys %>,
+      limit: <%= @limit %>
     });
   });
 </script>

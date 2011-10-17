@@ -7,6 +7,7 @@ Typus.Serialize.Views.Item = Backbone.View.extend({
   },
   
   initialize: function(){
+    this.model.bind('remove',_.bind(this.onRemove, this));
     this.render();
   },
   
@@ -17,7 +18,10 @@ Typus.Serialize.Views.Item = Backbone.View.extend({
   removeItem: function(e){
     e.preventDefault();
     this.model.collection.remove(this.model);
+  },
+
+  onRemove: function(model){
     this.remove();
   }
-  
+
 });
