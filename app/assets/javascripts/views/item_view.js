@@ -25,7 +25,9 @@ Typus.Serialize.Views.Item = Backbone.View.extend({
   },
 
   onRemove: function(){
-    this.remove();
+    $(this.el).slideUp('fast', function(){
+      $(this).remove();
+    });
   }
 
 });
