@@ -1,3 +1,5 @@
 TODO:
 
-- Fix rubygems validation message ("FIXME" or "TODO" is not a description)
+- Toggle add/remove buttons based on limits
+	hide add button when max reached
+	hide remove button when min reached

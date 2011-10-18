@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["William Meleyal", "Thomas Koenig", "I.C. Wiener"]
   s.email       = "team@wollzelle.com"
   s.homepage    = "http://wollzelle.com"
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = "Typus module for editing serialized data"
+  s.description = "Typus module for editing serialized data"
 
   s.rubyforge_project = "typus_serialize"
 
@@ -18,10 +18,8 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  # specify any dependencies here; for example:
-  # s.add_development_dependency "rspec"
   s.add_runtime_dependency "typus"
   s.add_runtime_dependency "jquery-rails"
   s.add_runtime_dependency "rails-backbone"
-  s.add_runtime_dependency "ejs", "~> 1.0.0"
+  s.add_runtime_dependency "ejs"
 end
