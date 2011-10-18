@@ -12,7 +12,8 @@ Typus.Serialize.Collections.List = Backbone.Collection.extend({
   add: function(models, options){
     if (this.length < this.max)
       Backbone.Collection.prototype.add.call(this, models, options);
-    else if (this.length >= this.max)
+      
+    if (this.length >= this.max)
       this.trigger('limit:max', this);
   },
 
@@ -22,12 +23,15 @@ Typus.Serialize.Collections.List = Backbone.Collection.extend({
 
     if (this.length <= this.min)
       this.trigger('limit:min', this);
+  
+    if (this.length == 1)
+      this.trigger('limit:one', this);
   },
 
   reset: function(models, options){
     options || (options = {});
 
-    // do not trigger reset yet, as we might add more models...
+    // don't trigger reset yet, as we might add more models...
     Backbone.Collection.prototype.reset.call(this, models, { silent: true });
 
     if (this.length < this.min){
@@ -39,12 +43,14 @@ Typus.Serialize.Collections.List = Backbone.Collection.extend({
       });
     }
 
-    if (this.length >= this.max)
-      this.trigger('limit:max', this);
-    else if (this.length <= this.min)
-      this.trigger('limit:min', this);
-
     // now lets trigger reset if we should...
     if (!options.silent) this.trigger('reset', this, options);
+    
+    if (this.length <= this.min)
+      this.trigger('limit:min', this);
+
+    if (this.length == 1)
+      this.trigger('limit:one', this);
   }
+
 });
