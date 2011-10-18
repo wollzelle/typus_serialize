@@ -1,5 +1,9 @@
 Typus.Serialize.Views.Item = Backbone.View.extend({
   
+  tagName: 'li',
+  
+  className: 'serial-item serial-input',
+  
   template: JST['templates/item'],
   
   events: {
@@ -7,7 +11,7 @@ Typus.Serialize.Views.Item = Backbone.View.extend({
   },
   
   initialize: function(){
-    this.model.bind('remove',_.bind(this.onRemove, this));
+    this.model.bind('remove', _.bind(this.onRemove, this));
     this.render();
   },
   
@@ -20,7 +24,7 @@ Typus.Serialize.Views.Item = Backbone.View.extend({
     this.model.collection.remove(this.model);
   },
 
-  onRemove: function(model){
+  onRemove: function(){
     this.remove();
   }
 
