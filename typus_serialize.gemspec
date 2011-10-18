@@ -5,7 +5,7 @@ require "typus_serialize/version"
 Gem::Specification.new do |s|
   s.name        = "typus_serialize"
   s.version     = TypusSerialize::VERSION
-  s.authors     = ["William Meleyal", "Thomas Koenig", "I.C. Wiener"]
+  s.authors     = ["Thomas Koenig", "William Meleyal", "I.C. Wiener"]
   s.email       = "team@wollzelle.com"
   s.homepage    = "http://wollzelle.com"
   s.summary     = "Typus module for editing serialized data"
@@ -18,8 +18,9 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_runtime_dependency "typus"
-  s.add_runtime_dependency "jquery-rails"
-  s.add_runtime_dependency "rails-backbone"
-  s.add_runtime_dependency "ejs"
+  s.add_dependency "rails", "~> 3.1.0"
+  s.add_dependency "typus"
+  s.add_dependency "jquery-rails"
+  s.add_dependency "rails-backbone"
+  s.add_dependency "ejs"
 end

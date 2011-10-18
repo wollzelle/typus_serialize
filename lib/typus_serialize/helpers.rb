@@ -1,4 +1,5 @@
 module TypusSerialize
+
   module ApplicationHelper
     
     def get_keys(model, attribute)
@@ -40,4 +41,5 @@ module TypusSerialize
     end
     
   end
+
 end
