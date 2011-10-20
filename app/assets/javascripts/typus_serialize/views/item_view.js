@@ -4,7 +4,7 @@ Typus.Serialize.Views.Item = Backbone.View.extend({
   
   className: 'serial-item serial-input',
   
-  template: JST['templates/item'],
+  template: JST['typus_serialize/templates/item'],
   
   events: {
     'click .serial-remove-button': 'removeItem'

@@ -9,11 +9,11 @@
 <% unless @typus_serialize_assets_loaded # only load assets once %>
 
   <% content_for :stylesheets do %>
-  <%= stylesheet_link_tag "typus_serialize" %>
+  <%= stylesheet_link_tag "typus_serialize/application" %>
   <% end %>
 
   <% content_for :javascripts do %>
-  <%= javascript_include_tag "typus_serialize" %>
+  <%= javascript_include_tag "typus_serialize/application" %>
   <% end %>
 
   <% @typus_serialize_assets_loaded = true %>

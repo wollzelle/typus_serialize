@@ -1,13 +1,12 @@
-/* 
-*= require underscore
-*= require backbone
-*= require jquery-ui
-*= require_self
-*= require_tree ./models
-*= require_tree ./collections
-*= require_tree ./templates
-*= require_tree ./views
-*/
+//= require underscore
+//= require backbone
+//= require jquery-ui
+
+//= require_self
+//= require_tree ./models
+//= require_tree ./collections
+//= require_tree ./templates
+//= require_tree ./views
 
 window.Typus = Typus || {};
 
