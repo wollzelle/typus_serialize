@@ -1,9 +1,9 @@
 # typus_serialize
 
-Typus module for editing serialized data
+Serialize module for Typus, adds support for editing serialized data.
 
-https://github.com/wollzelle/typus_serialize
-https://github.com/fesplugas/typus
+* https://github.com/wollzelle/typus_serialize
+* https://github.com/fesplugas/typus
 
 ## Installation
 
@@ -36,7 +36,6 @@ In your `Gemfile`:
                 info: 1
                 music: !ruby/range 1..6
                 videos: !ruby/range 0..4
-
 
 ## Copyright
 
