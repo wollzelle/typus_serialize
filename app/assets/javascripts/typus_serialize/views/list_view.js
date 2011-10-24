@@ -32,7 +32,7 @@ Typus.Serialize.Views.List = Backbone.View.extend({
   onRemove: function(model){
     this.addButton.show();
     if (this.collection.length == 0) {
-      var template = JST['templates/empty'];
+      var template = JST['typus_serialize/templates/empty'];
       $(this.list).append(template({ base_name: this.collection.baseName }));
     }
   },
