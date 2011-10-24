@@ -1,9 +1,9 @@
 <a href="#" class="serial-button serial-remove-button" title="Remove">&#215;</a>
 <span class="serial-button serial-drag-handle" title="Sort">&#8597;</span>
 
-<% _.each(model.attributes, function(value, key) { %>
+<% for own key, value of @model.attributes: %>
   <p>
     <label><%= key %></label>
-    <input type="text" name="<%= model.baseName() %>[<%= key %>]" value="<%= value %>">
+    <input type="text" name="<%= "#{@model.baseName()}[#{key}]" %>" value="<%= value %>">
   </p>
-<% }); %>
+<% end %>
