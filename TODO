@@ -1,8 +1,7 @@
 TODO:
 
-
 - Move add item to JS template
-
+- Create Github repo
 
 ✓ move module to Typus namespace (TypusSerialize > Typus::Serialize)
 ✓ make rake assets:precompile work

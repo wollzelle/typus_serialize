@@ -3,7 +3,7 @@ module Typus
     if defined?(Rails)
       require 'jquery-rails'
       require 'rails-backbone'
-      require 'ejs'
+      require 'eco'
       require 'serialize/engine'
       require 'serialize/helpers'
       require 'serialize/version'
