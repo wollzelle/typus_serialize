@@ -10,15 +10,16 @@ class Typus.Serialize.Views.Item extends Backbone.View
     'click .serial-remove-button': 'removeItem'
   
   initialize: ->
-    @.model.bind('remove', @.onRemove)
-    @.render()
+    @el = $(@el)
+    @model.bind('remove', @onRemove)
+    @render()
   
   render: ->
-    $(@.el).html(@.template({ @model }))
+    $(@el).html(@template({ @model }))
   
   removeItem: (e) ->
+    @model.collection.remove(@model)
     e.preventDefault()
-    @.model.collection.remove(@.model)
 
   onRemove: =>
-    $(@.el).slideUp('fast', -> $(@).remove())
+    @el.slideUp('fast', -> $(@).remove())
