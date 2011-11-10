@@ -27,6 +27,10 @@ In your `Gemfile`:
       fields:
         form: name, info, music, videos
         options:
+          templates:
+            info: serialize
+            music: serialize
+            videos: serialize
           serialize:
             info: birthplace, star_sign, genre, instrument, url
             music: title, url
