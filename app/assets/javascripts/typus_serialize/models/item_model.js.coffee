@@ -7,8 +7,8 @@ class Typus.Serialize.Models.Item extends Backbone.Model
       unless @get(key)
         @setByName(key, null)
 
-  baseName: ->
-    "#{@collection.baseName}[#{@cid}]"
+  name: ->
+    "#{@collection.name}[#{@cid}]"
   
   setByName: (key, value) =>
     setter = {}

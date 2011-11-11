@@ -30,7 +30,7 @@ class Typus.Serialize.Views.List extends Backbone.View
     @addButton.show()
     template = JST['typus_serialize/templates/empty']
     if @collection.length == 0
-      @list.append(template({ base_name: @collection.baseName }))
+      @list.append(template({ name: @collection.name }))
 
   onMinimum: =>
     @el.find('.serial-remove-button').hide()

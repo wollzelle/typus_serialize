@@ -4,6 +4,26 @@
 <% for own key, value of @model.attributes: %>
   <p>
     <label><%= key %></label>
-    <input type="text" name="<%= "#{@model.baseName()}[#{key}]" %>" value="<%= value %>">
+
+    <% if @model.locales.length: %>
+
+      <% for locale in @model.locales: %>
+
+        <input  type="text" 
+                class="translation lang-<%= locale %>" 
+                name="<%= "#{@model.name()}[#{key}][#{locale}]" %>" 
+                value="<%= value?[locale] %>" 
+                placeholder="<%= value?['en'] %>">
+
+      <% end %>
+
+    <% else: %>
+
+      <input  type="text" 
+              name="<%= "#{@model.name()}[#{key}]" %>" 
+              value="<%= value %>">
+
+    <% end %>
+
   </p>
 <% end %>

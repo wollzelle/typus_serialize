@@ -3,8 +3,7 @@ class Typus.Serialize.Collections.List extends Backbone.Collection
   model: Typus.Serialize.Models.Item
   
   initialize: (models, options) ->
-    @baseName = options.baseName
-    @keys = options.keys
+    { @name, @keys, @locales } = options
     @min = options.limit.min or 0
     @max = options.limit.max or Infinity
   

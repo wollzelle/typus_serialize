@@ -15,6 +15,7 @@ class Typus.Serialize.Views.Item extends Backbone.View
     @render()
   
   render: ->
+    @model.locales = @model.collection.locales
     $(@el).html(@template({ @model }))
   
   removeItem: (e) ->

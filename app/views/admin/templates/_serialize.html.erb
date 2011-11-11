@@ -1,33 +1,26 @@
 <%
-  # helpers
-  @keys  = get_keys(@item, attribute)
-  @name  = get_name(@item, attribute)
-  @data  = get_json(@item, attribute)
-  @limit = get_limit(@item, attribute)
+  serializer = Admin::SerializeHelper::Serializer
+  s = serializer.new(@item, attribute)
 %>
 
-<% unless @typus_serialize_assets_loaded # only load assets once %>
-
+<% serializer.load_assets do %>
   <% content_for :stylesheets do %>
-  <%= stylesheet_link_tag "typus_serialize/application" %>
+    <%= stylesheet_link_tag "typus_serialize/application" %>
   <% end %>
-
   <% content_for :javascripts do %>
-  <%= javascript_include_tag "typus_serialize/application" %>
+    <%= javascript_include_tag "typus_serialize/application" %>
   <% end %>
-
-  <% @typus_serialize_assets_loaded = true %>
-
 <% end %>
   
 <% content_for :javascripts do %>
 <script>
   $(document).ready(function(){
     $('#<%= attribute_id %>').typusSerialize({
-      data: <%= @data %>,
-      baseName: '<%= @name %>',
-      keys: <%= @keys %>,
-      limit: <%= @limit %>
+      data:       <%= s.data %>,
+      name:       '<%= s.name %>',
+      keys:       <%= s.keys %>,
+      limit:      <%= s.limit %>,
+      locales:    <%= s.locales %>
     });
   });
 </script>
