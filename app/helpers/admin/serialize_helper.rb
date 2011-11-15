@@ -30,8 +30,8 @@ module Admin::SerializeHelper
 
     def keys
       config = begin
-        c = Typus::Configuration.config[@model.class.to_s]['fields']['options']['serialize'][@attribute.to_s]
-        c.split(',').collect {|t| t.strip.humanize }.to_json
+        c = @model.class.typus_serialize_options[@attribute.to_sym][:keys]
+        c.collect {|t| t.strip.humanize }.to_json
         rescue []
       end
       raw config
@@ -53,7 +53,7 @@ module Admin::SerializeHelper
     end
 
     def limit
-      limit = Typus::Configuration.config[@model.class.to_s]['fields']['options']['serialize']['options']['limit'][@attribute.to_s] rescue []
+      limit = @model.class.typus_serialize_options[@attribute.to_sym][:limit] rescue []
 
       case limit
       when Range
