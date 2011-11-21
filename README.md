@@ -16,30 +16,10 @@ In your `Gemfile`:
 **In your model:**
 
     class Profile < ActiveRecord::Base
-      serialize :info
-      serialize :music
-      serialize :videos
+      typus_serialize :info, keys: %w(birthplace star_sign genre instrument url), limit: 1
+      typus_serialize :music, keys: %w(title url), !ruby/range 1..6
+      typus_serialize :videos, keys: %w(title video_url poster_url), !ruby/range 0..4
       ...
-
-**In `config/typus/application.yml`**
-
-    Profile:
-      fields:
-        form: name, info, music, videos
-        options:
-          templates:
-            info: serialize
-            music: serialize
-            videos: serialize
-          serialize:
-            info: birthplace, star_sign, genre, instrument, url
-            music: title, url
-            videos: title, video_url, poster_url
-            options:
-              limit:
-                info: 1
-                music: !ruby/range 1..6
-                videos: !ruby/range 0..4
 
 ## Copyright
 

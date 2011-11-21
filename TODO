@@ -1,9 +1,7 @@
 TODO:
 
-- Move add item to JS template
-- Create Github repo
+- Save translations in translations table if translatable
 
-✓ move module to Typus namespace (TypusSerialize > Typus::Serialize)
-✓ make rake assets:precompile work
-✓ Bug: Add at least 2 items, Drag one above the other, Click remove on either item, Both are removed <-- bug
-✓ Toggle add/remove buttons based on limits
+- Move add item to JS template
+
+- Create Github repo
