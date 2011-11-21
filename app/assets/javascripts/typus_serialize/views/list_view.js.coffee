@@ -15,16 +15,17 @@ class Typus.Serialize.Views.List extends Backbone.View
     @collection.bind('limit:min', @onMinimum)
     @collection.bind('limit:max', @onMaximum)
     @makeSortable()
-    @onReset()
+    # @onReset()
 
   onAdd: (model) =>
     item = new Typus.Serialize.Views.Item({ model }).el
     @addButton.before(item)
     @el.find('.serial-remove-button').show()
     @el.find('.serial-drag-handle').show()
-  
+
   onReset: =>
     @collection.each(@onAdd)
+    @triggerRefresh()
   
   onRemove: (model) =>
     @addButton.show()
@@ -42,8 +43,12 @@ class Typus.Serialize.Views.List extends Backbone.View
     @el.find('.serial-drag-handle').hide()
 
   addItem: (e) ->
-    @collection.add()
     e.preventDefault()
+    @collection.add()
+    @triggerRefresh()    
+
+  triggerRefresh: ->
+    $(window).trigger('translate:refresh')
 
   makeSortable: ->
     @el.sortable({
