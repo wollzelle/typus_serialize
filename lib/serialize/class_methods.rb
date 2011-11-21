@@ -12,8 +12,13 @@ module Typus
         self.typus_serialize_fields << field
         self.typus_serialize_options[field] = options
         serialize field
+        translation_class.send :serialize, field if respond_to?(:translation_class)
 
-        extend TemplateMethods unless included_modules.include?(TemplateMethods)
+        extend TemplateMethods unless extended_modules.include?(TemplateMethods)
+      end
+      
+      def extended_modules
+        (class << self; self end).included_modules        
       end      
     end
     

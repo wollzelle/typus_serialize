@@ -26,6 +26,27 @@
 </script>
 <% end %>
 
+<% if Admin::TranslateHelper::Translator %>
+<% Admin::TranslateHelper::Translator.forms.each do |locale, form| %>
+
+  <%# form.hidden_field :locale %>   
+
+  <li class="<%= "translation lang-#{locale}" %>">
+
+    <%= form.label :locale, "#{attribute.capitalize} (#{locale})" %>
+
+    <ul class="serial-list">
+      <li class="serial-item serial-item-add">
+        <a href="#" class="serial-button serial-add-button">Add <%= attribute %> +</a>
+      </li>
+    </ul>
+
+
+  </li>
+
+<% end  %>
+<% else  %>
+
 <li id="<%= attribute_id %>">
 
   <%= form.label attribute, label_text %>
@@ -37,3 +58,5 @@
   </ul>
 
 </li>
+
+<% end  %>

@@ -39,16 +39,17 @@ module Admin::SerializeHelper
 
     def name
       model = ActiveModel::Naming.param_key(@model) # => singular_model_name
+      model = "#{model}[translations_attributes]" if @model.respond_to?('translations_attributes=') && @model.translated_attribute_names.include?(@attribute.to_sym)
       name = "#{model}[#{@attribute}]"
     end
 
     def data
-      items = @model[@attribute].delete_if { |x| x == "" } rescue nil
+      items = @model.send(@attribute).delete_if { |x| x == "" } rescue nil
       raw items.values.to_json rescue []
     end
 
     def locales
-      locales = Typus::Translate::Configuration.config['locales'] rescue nil
+      locales = [] #Typus::Translate::Configuration.config['locales'] rescue nil
       raw locales.keys.to_json rescue []
     end
 
