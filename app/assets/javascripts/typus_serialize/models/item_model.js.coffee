@@ -7,9 +7,21 @@ class Typus.Serialize.Models.Item extends Backbone.Model
       unless @get(key)
         @setByName(key, null)
 
-  name: ->
-    "#{@collection.name}[#{@cid}]"
+  name: (locale) ->
+    if locale
+      "#{@collection.name[locale]}[]"
+    else
+      "#{@collection.name}[]"
   
+  value: (key, locale) ->
+    if locale
+      @get(key)?[locale]
+    else
+      @get(key)
+
+  humanize: (key) ->
+    _.str.humanize(key)
+
   setByName: (key, value) =>
     setter = {}
     setter[key] = value

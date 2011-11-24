@@ -1,0 +1,49 @@
+.serial-list {
+  margin-bottom: 2em !important;
+  
+  label {
+    float: left;
+    min-width: 120px;
+    padding-top: 5px;
+  }
+
+  input {
+    width: 60%;
+  }
+  
+  .serial-item {
+    background: #fafafa;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #fff;  
+    padding: 10px 20px;
+    margin: 0;
+    position: relative;
+  }
+
+  .serial-drag-handle {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    text-decoration: none;
+    cursor: move;
+    display: block;
+    background: url(image_path("typus_serialize/drag.png")) no-repeat 50% 50%;
+    width: 10px;
+    height: 18px;
+    text-indent: -999em;
+  }
+
+  .serial-remove-button {
+    position: absolute;
+    top: 10px;
+    right: 35px;
+    text-decoration: none;
+  }
+
+  .ui-sortable-placeholder {
+    background: none;
+    visibility: visible !important;
+    border: 1px dashed #ccc;
+  }
+    
+}

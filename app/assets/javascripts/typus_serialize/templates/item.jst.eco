@@ -1,19 +1,20 @@
 <a href="#" class="serial-button serial-remove-button" title="Remove">&#215;</a>
 <span class="serial-button serial-drag-handle" title="Sort">&#8597;</span>
 
-<% for own key, value of @model.attributes: %>
-  <p>
-    <label><%= key %></label>
+<% for key in @model.collection.keys: %>
 
+  <p>
+    <label><%= @model.humanize(key) %></label>
+    
     <% if @model.locales.length: %>
 
       <% for locale in @model.locales: %>
 
         <input  type="text" 
                 class="translation lang-<%= locale %>" 
-                name="<%= "#{@model.name()}[#{key}][#{locale}]" %>" 
-                value="<%= value?[locale] %>" 
-                placeholder="<%= value?['en'] %>">
+                name="<%= "#{@model.name(locale)}[#{key}]" %>" 
+                value="<%= @model.value(key, locale) %>"
+                placeholder="<%= @model.value(key, 'en') %>">                
 
       <% end %>
 
@@ -21,9 +22,9 @@
 
       <input  type="text" 
               name="<%= "#{@model.name()}[#{key}]" %>" 
-              value="<%= value %>">
+              value="<%= @model.value(key) %>">
 
-    <% end %>
-
+    <% end %>    
   </p>
+
 <% end %>

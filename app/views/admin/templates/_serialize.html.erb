@@ -17,35 +17,14 @@
   $(document).ready(function(){
     $('#<%= attribute_id %>').typusSerialize({
       data:       <%= s.data %>,
-      name:       '<%= s.name %>',
+      name:       <%= s.name %>,
       keys:       <%= s.keys %>,
       limit:      <%= s.limit %>,
-      locales:    <%= s.locales %>
+      locales:    <%= s.locales_json %>
     });
   });
 </script>
 <% end %>
-
-<% if Admin::TranslateHelper::Translator %>
-<% Admin::TranslateHelper::Translator.forms.each do |locale, form| %>
-
-  <%# form.hidden_field :locale %>   
-
-  <li class="<%= "translation lang-#{locale}" %>">
-
-    <%= form.label :locale, "#{attribute.capitalize} (#{locale})" %>
-
-    <ul class="serial-list">
-      <li class="serial-item serial-item-add">
-        <a href="#" class="serial-button serial-add-button">Add <%= attribute %> +</a>
-      </li>
-    </ul>
-
-
-  </li>
-
-<% end  %>
-<% else  %>
 
 <li id="<%= attribute_id %>">
 
@@ -59,4 +38,3 @@
 
 </li>
 
-<% end  %>

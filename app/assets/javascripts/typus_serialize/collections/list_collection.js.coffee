@@ -6,6 +6,7 @@ class Typus.Serialize.Collections.List extends Backbone.Collection
     { @name, @keys, @locales } = options
     @min = options.limit.min or 0
     @max = options.limit.max or Infinity
+    # @reset(options.data)
   
   add: (models, options) ->
     if @length < @max
@@ -26,7 +27,7 @@ class Typus.Serialize.Collections.List extends Backbone.Collection
   
   reset: (models, options) ->
     options or (options = {})
-  
+
     # don't trigger reset yet, as we might add more models...
     super(models, { silent: true })
 
@@ -44,3 +45,4 @@ class Typus.Serialize.Collections.List extends Backbone.Collection
 
     if @length is 1
       @trigger('limit:one', @)
+      

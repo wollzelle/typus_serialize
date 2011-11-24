@@ -1,6 +1,20 @@
 TODO:
 
-- Save translations in translations table if translatable
+
+✓ add lang code to title/label + switch on tab change
+
+✓ reduce height of drag targets
+	
+✓ fix rescues (begin rescue end?)
+
+✓ clean up
+
+✓ make it work without translations
+
+✓ fix / document translator dependencies
+		translator needs to be setup first (add new section to readme)
+
+✓ Save translations in translations table if translatable
 
 - Move add item to JS template
 

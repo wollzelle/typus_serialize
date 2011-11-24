@@ -14,8 +14,8 @@ class Typus.Serialize.Views.List extends Backbone.View
     @collection.bind('limit:one', @onOne)
     @collection.bind('limit:min', @onMinimum)
     @collection.bind('limit:max', @onMaximum)
+    $(window).bind('translate:activated', @renderLocale)
     @makeSortable()
-    # @onReset()
 
   onAdd: (model) =>
     item = new Typus.Serialize.Views.Item({ model }).el
@@ -43,18 +43,26 @@ class Typus.Serialize.Views.List extends Backbone.View
     @el.find('.serial-drag-handle').hide()
 
   addItem: (e) ->
-    e.preventDefault()
     @collection.add()
-    @triggerRefresh()    
+    @triggerRefresh()
+    e.preventDefault()
 
   triggerRefresh: ->
     $(window).trigger('translate:refresh')
 
   makeSortable: ->
     @el.sortable({
-      items: '.serial-input'
+      items:  '.serial-input'
       handle: '.serial-drag-handle'
       cursor: 'move'
-      helper: 'clone'
       revert: 50
     })
+
+  renderLocale: (e, locale) =>
+    label = @el.find('> label')
+    text = label.text()
+    if _.str.include(text, '(')
+      text = text.replace(/\(.*\)/, " (#{locale})") 
+    else
+      text += " (#{locale})"
+    label.text(text)

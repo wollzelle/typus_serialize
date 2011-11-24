@@ -29,32 +29,70 @@ module Admin::SerializeHelper
     end
 
     def keys
-      config = begin
-        c = @model.class.typus_serialize_options[@attribute.to_sym][:keys]
-        c.collect {|t| t.strip.humanize }.to_json
-        rescue []
-      end
-      raw config
+      keys = @model.class.typus_serialize_options[@attribute.to_sym][:keys]
+      return raw keys.to_json
     end
 
     def name
-      model = ActiveModel::Naming.param_key(@model) # => singular_model_name
-      model = "#{model}[translations_attributes]" if @model.respond_to?('translations_attributes=') && @model.translated_attribute_names.include?(@attribute.to_sym)
-      name = "#{model}[#{@attribute}]"
+      if translatable?
+        translator = Admin::TranslateHelper::Translator
+        names = {}
+        forms = translator.forms # TODO: make sure the translation exists before!
+        forms.each do |form|
+          locale, builder = form
+          names[locale] = translator.field_name_for(builder, @attribute)
+        end
+        return raw names.to_json
+      else 
+        model = ActiveModel::Naming.param_key(@model) # => singular_model_name
+        name = "#{model}[#{@attribute}]"
+        return raw name.to_json
+      end
     end
 
     def data
-      items = @model.send(@attribute).delete_if { |x| x == "" } rescue nil
-      raw items.values.to_json rescue []
+      if translatable?
+        items = []
+        # get one translated attribute for the keys
+        sample = @model.send(@attribute) || []
+        sample.each do |item|
+          # loop through the keys to build the reversed array 
+          item.keys.each do |key|
+            locales.each do |locale, trans|
+              # get the data for this locale
+              data = @model.send(@attribute, locale)
+              data.each_with_index do |d, idx|
+                item = items[idx] ||= {}
+                item[key] ||= {}
+                item[key][locale] = d[key] # inception
+             end
+            end
+          end
+        end 
+      else
+        items = @model.send(@attribute)
+      end
+      return raw items.to_json
+    end
+
+    def translatable?
+      @model.respond_to?('translations_attributes=') && @model.translated_attribute_names.include?(@attribute.to_sym)
     end
 
     def locales
-      locales = [] #Typus::Translate::Configuration.config['locales'] rescue nil
-      raw locales.keys.to_json rescue []
+      Typus::Translate::Configuration.config['locales'] if translatable?
+    end
+
+    def locales_json
+      if translatable?
+        raw locales.keys.to_json
+      else
+        raw [].to_json
+      end
     end
 
     def limit
-      limit = @model.class.typus_serialize_options[@attribute.to_sym][:limit] rescue []
+      limit = @model.class.typus_serialize_options[@attribute.to_sym][:limit]
 
       case limit
       when Range
@@ -69,7 +107,7 @@ module Admin::SerializeHelper
         max = 1.0/0 # infinity
       end
 
-      raw({ :min => min, :max => max }.to_json)
+      return raw({ :min => min, :max => max }.to_json)
     end
 
   end

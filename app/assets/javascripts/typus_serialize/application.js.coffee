@@ -1,4 +1,5 @@
 #= require underscore
+#= require underscore.string
 #= require backbone
 #= require jquery-ui
 
@@ -15,9 +16,9 @@ Typus.Serialize =
   Collections: {}
   Views: {}
 
-Typus.Serializer = (options, el) ->
+Typus.Serializer = (options, el) ->    
   collection = new Typus.Serialize.Collections.List(null, options)
   new Typus.Serialize.Views.List({ el, collection })
   collection.reset(options.data)
 
-$.widget.bridge('typusSerialize', Typus.Serializer);
+$.widget.bridge('typusSerialize', Typus.Serializer)
