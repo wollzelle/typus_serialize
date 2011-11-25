@@ -59,10 +59,11 @@ class Typus.Serialize.Views.List extends Backbone.View
     })
 
   renderLocale: (e, locale) =>
-    label = @el.find('> label')
-    text = label.text()
-    if _.str.include(text, '(')
-      text = text.replace(/\(.*\)/, " (#{locale})") 
-    else
-      text += " (#{locale})"
-    label.text(text)
+    if @collection.translatable()
+      label = @el.find('> label')
+      text = label.text()
+      if _.str.include(text, '(')
+        text = text.replace(/\(.*\)/, " (#{locale})") 
+      else
+        text += " (#{locale})"
+      label.text(text)

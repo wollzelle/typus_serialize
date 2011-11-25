@@ -6,7 +6,7 @@
   <p>
     <label><%= @model.humanize(key) %></label>
     
-    <% if @model.locales.length: %>
+    <% if @model.collection.translatable(): %>
 
       <% for locale in @model.locales: %>
 

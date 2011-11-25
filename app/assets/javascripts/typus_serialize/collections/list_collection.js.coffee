@@ -6,7 +6,10 @@ class Typus.Serialize.Collections.List extends Backbone.Collection
     { @name, @keys, @locales } = options
     @min = options.limit.min or 0
     @max = options.limit.max or Infinity
-    # @reset(options.data)
+  
+  translatable: ->
+    console.log 'translatable'
+    @locales.length > 0
   
   add: (models, options) ->
     if @length < @max
