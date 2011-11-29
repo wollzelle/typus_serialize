@@ -60,12 +60,13 @@ module Admin::SerializeHelper
           item.keys.each do |key|
             locales.each do |locale, trans|
               # get the data for this locale
-              data = @model.send(@attribute, locale)
-              data.each_with_index do |d, idx|
-                item = items[idx] ||= {}
-                item[key] ||= {}
-                item[key][locale] = d[key] # inception
-             end
+              if data = @model.send(@attribute, locale)
+                data.each_with_index do |d, idx|
+                  item = items[idx] ||= {}
+                  item[key] ||= {}
+                  item[key][locale] = d[key] # inception
+                end
+              end
             end
           end
         end 
