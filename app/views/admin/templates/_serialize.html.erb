@@ -1,9 +1,11 @@
 <%
-  serializer = Admin::SerializeHelper::Serializer
-  s = serializer.new(@item, attribute)
+  ##
+  #   Setup 
+  #   this only happens once, the first time the template is called
+  #
+  @serializer ||= Admin::SerializeHelper::Serializer.new # use the same serializer for the whole page, to initialize
 %>
-
-<% serializer.load_assets do %>
+<% @serializer.load_assets do %>
   <% content_for :stylesheets do %>
     <%= stylesheet_link_tag "typus_serialize/application" %>
   <% end %>
@@ -11,16 +13,23 @@
     <%= javascript_include_tag "typus_serialize/application" %>
   <% end %>
 <% end %>
-  
+
+<%
+  ##
+  #   Template
+  #   this is rendered for each translatable attribute (title, body, etc.)
+  #
+  instance = Admin::SerializeHelper::Serializer.new(@item, attribute)
+%>
 <% content_for :javascripts do %>
 <script>
   $(document).ready(function(){
     $('#<%= attribute_id %>').typusSerialize({
-      data:       <%= s.data %>,
-      name:       <%= s.name %>,
-      keys:       <%= s.keys %>,
-      limit:      <%= s.limit %>,
-      locales:    <%= s.locales_json %>
+      data:       <%= instance.data %>,
+      name:       <%= instance.name %>,
+      keys:       <%= instance.keys %>,
+      limit:      <%= instance.limit %>,
+      locales:    <%= instance.locales_json %>
     });
   });
 </script>

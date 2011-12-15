@@ -6,26 +6,22 @@ module Admin::SerializeHelper
     include ActiveModel::Naming
 
     ##
-    # Class Methods
+    # Instance Methods
     #
 
-    def self.assets_loaded?
+    def initialize(model = nil, attribute = nil)
+      @model = model
+      @attribute = attribute
+    end
+
+    def assets_loaded?
       return true if @loaded
       @loaded = true
       return false
     end
 
-    def self.load_assets
+    def load_assets
       yield unless self.assets_loaded?
-    end
-
-    ##
-    # Instance Methods
-    #
-
-    def initialize(model, attribute)
-      @model = model
-      @attribute = attribute
     end
 
     def keys
