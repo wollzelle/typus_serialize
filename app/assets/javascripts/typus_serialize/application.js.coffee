@@ -1,5 +1,4 @@
 #= require underscore
-#= require underscore.string
 #= require backbone
 #= require jquery-ui
 
