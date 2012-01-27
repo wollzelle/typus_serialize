@@ -1,10 +1,10 @@
 class Typus.Serialize.Models.Item extends Backbone.Model
-  
+
   initialize: ->
     @setKeys()
 
   setKeys: ->
-    # create properties for each key 
+    # create properties for each key
     for key in @collection.keys
       # but don't overwrite them if they already exist
       unless @get(key)
@@ -15,7 +15,7 @@ class Typus.Serialize.Models.Item extends Backbone.Model
       "#{@collection.name[locale]}[]"
     else
       "#{@collection.name}[]"
-  
+
   value: (key, locale) ->
     if locale
       @get(key)?[locale]
@@ -23,7 +23,8 @@ class Typus.Serialize.Models.Item extends Backbone.Model
       @get(key)
 
   humanize: (key) ->
-    _.str.humanize(key)
+    key
+
 
   setByName: (key, value) =>
     setter = {}
