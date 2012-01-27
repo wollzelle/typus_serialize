@@ -10,13 +10,12 @@
 #= require_tree ./views
 
 window.Typus = Typus or {}
-
 Typus.Serialize =
   Models: {}
   Collections: {}
   Views: {}
 
-Typus.Serializer = (options, el) ->    
+Typus.Serializer = (options, el) ->
   collection = new Typus.Serialize.Collections.List(null, options)
   new Typus.Serialize.Views.List({ el, collection })
   collection.reset(options.data)
