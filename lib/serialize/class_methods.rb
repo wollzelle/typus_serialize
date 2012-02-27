@@ -1,12 +1,12 @@
 module Typus
   module Serialize
     module ClassMethods
-      @@typus_serialize_fields = []
-      @@typus_serialize_options  = {}
-
-      mattr_accessor :typus_serialize_options, :typus_serialize_fields
 
       def typus_serialize(*args)
+        cattr_accessor :typus_serialize_options, :typus_serialize_fields
+        self.typus_serialize_fields  ||= []
+        self.typus_serialize_options ||= {}
+
         options = args.extract_options!
         field = args[0]
         self.typus_serialize_fields << field
