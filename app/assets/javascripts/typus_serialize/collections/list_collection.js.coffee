@@ -1,23 +1,22 @@
 class Typus.Serialize.Collections.List extends Backbone.Collection
 
   model: Typus.Serialize.Models.Item
-  
+
   initialize: (models, options) ->
     { @name, @keys, @locales } = options
     @min = options.limit.min or 0
     @max = options.limit.max or Infinity
-  
+
   translatable: ->
-    console.log 'translatable'
     @locales.length > 0
-  
+
   add: (models, options) ->
     if @length < @max
       super(models, options)
 
     if @length >= @max
       @trigger('limit:max', @)
-  
+
   remove: (models, options) ->
     if @length > @min
       super(models, options)
@@ -27,7 +26,7 @@ class Typus.Serialize.Collections.List extends Backbone.Collection
 
     if @length is 1
       @trigger('limit:one', @)
-  
+
   reset: (models, options) ->
     options or (options = {})
 
@@ -48,4 +47,3 @@ class Typus.Serialize.Collections.List extends Backbone.Collection
 
     if @length is 1
       @trigger('limit:one', @)
-      
