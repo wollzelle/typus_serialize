@@ -1,6 +1,6 @@
 # typus_serialize
 
-Serialize module for [Typus](https://github.com/fesplugas/typus), adds support for editing serialized data.
+Serialize module for [Typus](https://github.com/typus/typus), adds support for editing serialized data.
 
 ## Installation
 
