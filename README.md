@@ -49,4 +49,4 @@ This is a limitation that will be fixed in a future release.
 
 ## Copyright
 
-Copyright (c) 2011 Wollzelle GmbH. See LICENSE for details.
+Copyright (c) 2015 Wollzelle GmbH. See LICENSE for details.
